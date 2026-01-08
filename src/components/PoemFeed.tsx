@@ -84,7 +84,7 @@ const PoemFeed = ({ refreshTrigger }: PoemFeedProps) => {
   }
 
   return (
-    <div className="space-y-8 md:space-y-12">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 auto-rows-fr">
       {poems.map((poem, index) => (
         <PoemCard
           key={poem.id}

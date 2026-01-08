@@ -131,6 +131,14 @@
     letter-spacing: 0.01em;
     white-space: pre-wrap;
   }
+
+  /* Line clamp utility fallback */
+  .line-clamp-6 {
+    display: -webkit-box;
+    -webkit-line-clamp: 6;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
 }
 
 /* Custom animations */
@@ -163,6 +171,30 @@
   }
 }
 
+@keyframes quill-float {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  25% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+  50% {
+    transform: translateY(-12px) rotate(0deg);
+  }
+  75% {
+    transform: translateY(-8px) rotate(2deg);
+  }
+}
+
+@keyframes quill-write {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-3px) rotate(-3deg);
+  }
+}
+
 .animate-fade-in-up {
   animation: fade-in-up 0.6s ease-out forwards;
 }
@@ -175,6 +207,14 @@
   animation: gentle-pulse 2s ease-in-out infinite;
 }
 
+.animate-quill-float {
+  animation: quill-float 3s ease-in-out infinite;
+}
+
+.animate-quill-write {
+  animation: quill-write 2s ease-in-out infinite;
+}
+
 /* Stagger animation delays */
 .stagger-1 { animation-delay: 0.1s; }
 .stagger-2 { animation-delay: 0.2s; }
@@ -184,11 +224,24 @@
 
 /* Poem card hover effect */
 .poem-card {
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform, box-shadow;
+  position: relative;
+  backface-visibility: hidden;
+  transform: translateZ(0);
 }
 
 .poem-card:hover {
-  transform: translateY(-2px);
+  transform: translateY(-8px) scale(1.02) translateZ(0);
+  z-index: 10;
+  box-shadow: 0 20px 40px -8px hsl(var(--poem-shadow) / 0.3),
+              0 8px 24px -4px hsl(var(--poem-shadow) / 0.2),
+              0 0 0 1px hsl(var(--poem-border) / 0.5);
+  border-color: hsl(var(--primary) / 0.3);
+}
+
+.poem-card:active {
+  transform: translateY(-4px) scale(1.01) translateZ(0);
 }
 
 /* Focus styles for accessibility */
@@ -213,4 +266,9 @@
 
 ::-webkit-scrollbar-thumb:hover {
   background: hsl(var(--muted-foreground) / 0.5);
+}
+
+/* Dialog custom styling for poems */
+[data-radix-dialog-content] {
+  animation-duration: 0.4s !important;
 }
