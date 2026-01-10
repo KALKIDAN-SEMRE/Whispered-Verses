@@ -12,7 +12,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background animate-fade-in">
       {/* SEO Meta */}
       <title>Verse — Anonymous Poetry Sanctuary</title>
       <meta name="description" content="A peaceful, anonymous space to share and read poetry. Express yourself freely without identity." />
@@ -21,28 +21,28 @@ const Index = () => {
         <Header />
 
         {/* Submit Section */}
-        <section className="bg-card border border-border rounded-xl p-6 md:p-10 mb-16 shadow-poem animate-fade-in-up opacity-0 stagger-2">
+        <section className="bg-card border border-border rounded-xl p-6 md:p-10 mb-16 shadow-poem animate-slide-in-bottom opacity-0" style={{ animationDelay: '0.2s' }}>
           <PoemForm onPoemSubmitted={handlePoemSubmitted} />
         </section>
 
         {/* Divider */}
-        <div className="flex items-center gap-4 mb-12 animate-fade-in stagger-3 opacity-0">
-          <Separator className="flex-1" />
-          <span className="font-display text-lg text-muted-foreground italic">
+        <div className="flex items-center gap-4 mb-12 animate-fade-in-up opacity-0" style={{ animationDelay: '0.4s' }}>
+          <Separator className="flex-1 transition-all duration-500 hover:flex-[1.2]" />
+          <span className="font-display text-lg text-muted-foreground italic transition-all duration-300 hover:text-primary/80 hover:scale-105">
             Recent Poems
           </span>
-          <Separator className="flex-1" />
+          <Separator className="flex-1 transition-all duration-500 hover:flex-[1.2]" />
         </div>
 
         {/* Poems Feed */}
-        <section>
+        <section className="animate-fade-in opacity-0" style={{ animationDelay: '0.5s' }}>
           <PoemFeed refreshTrigger={refreshTrigger} />
         </section>
       </main>
 
       {/* Footer */}
-      <footer className="text-center py-8 border-t border-border">
-        <p className="text-sm text-muted-foreground font-body">
+      <footer className="text-center py-8 border-t border-border animate-fade-in opacity-0" style={{ animationDelay: '0.6s' }}>
+        <p className="text-sm text-muted-foreground font-body transition-colors duration-300 hover:text-foreground/80">
           A quiet space for words that matter.
         </p>
       </footer>

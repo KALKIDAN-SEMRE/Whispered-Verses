@@ -99,6 +99,46 @@ export default {
           "0%, 100%": { transform: "translateY(0) rotate(0deg)" },
           "50%": { transform: "translateY(-3px) rotate(-3deg)" },
         },
+        "slide-in-bottom": {
+          from: { opacity: "0", transform: "translateY(30px) scale(0.95)" },
+          to: { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        "slide-in-top": {
+          from: { opacity: "0", transform: "translateY(-30px) scale(0.95)" },
+          to: { opacity: "1", transform: "translateY(0) scale(1)" },
+        },
+        "scale-in": {
+          from: { opacity: "0", transform: "scale(0.9)" },
+          to: { opacity: "1", transform: "scale(1)" },
+        },
+        "shimmer": {
+          "0%": { backgroundPosition: "-1000px 0" },
+          "100%": { backgroundPosition: "1000px 0" },
+        },
+        "float": {
+          "0%, 100%": { transform: "translateY(0px)" },
+          "50%": { transform: "translateY(-10px)" },
+        },
+        "gentle-glow": {
+          "0%, 100%": { boxShadow: "0 0 20px hsl(var(--primary) / 0.1)" },
+          "50%": { boxShadow: "0 0 30px hsl(var(--primary) / 0.2)" },
+        },
+        "rotate-in": {
+          from: { opacity: "0", transform: "rotate(-180deg) scale(0.8)" },
+          to: { opacity: "1", transform: "rotate(0deg) scale(1)" },
+        },
+        "text-reveal": {
+          from: { opacity: "0", transform: "translateY(10px)", clipPath: "inset(0 0 100% 0)" },
+          to: { opacity: "1", transform: "translateY(0)", clipPath: "inset(0 0 0% 0)" },
+        },
+        "gradient-shift": {
+          "0%, 100%": { backgroundPosition: "0% 50%" },
+          "50%": { backgroundPosition: "100% 50%" },
+        },
+        "ripple": {
+          "0%": { transform: "scale(0)", opacity: "1" },
+          "100%": { transform: "scale(4)", opacity: "0" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -107,6 +147,16 @@ export default {
         "fade-in": "fade-in 0.4s ease-out forwards",
         "quill-float": "quill-float 3s ease-in-out infinite",
         "quill-write": "quill-write 2s ease-in-out infinite",
+        "slide-in-bottom": "slide-in-bottom 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "slide-in-top": "slide-in-top 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "scale-in": "scale-in 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "shimmer": "shimmer 2s infinite linear",
+        "float": "float 6s ease-in-out infinite",
+        "gentle-glow": "gentle-glow 3s ease-in-out infinite",
+        "rotate-in": "rotate-in 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "text-reveal": "text-reveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards",
+        "gradient-shift": "gradient-shift 8s ease infinite",
+        "ripple": "ripple 0.6s ease-out",
       },
       boxShadow: {
         'poem': '0 4px 20px -4px hsl(var(--poem-shadow) / 0.15)',

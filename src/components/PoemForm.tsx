@@ -59,10 +59,10 @@ const PoemForm = ({ onPoemSubmitted }: PoemFormProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
+    <form onSubmit={handleSubmit} className="space-y-6 relative">
       <div className="text-center mb-8">
         <Feather className="w-8 h-8 text-primary mx-auto mb-4 animate-quill-float" />
-        <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground mb-2 animate-fade-in-up opacity-0" style={{ animationDelay: '0.1s' }}>
+        <h2 className="font-display text-2xl md:text-3xl font-medium text-foreground mb-2 animate-text-reveal opacity-0">
           Share Your Words
         </h2>
         <p className="text-muted-foreground font-body animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
@@ -71,41 +71,46 @@ const PoemForm = ({ onPoemSubmitted }: PoemFormProps) => {
       </div>
 
       <div className="space-y-4">
-        <div className="animate-fade-in-up opacity-0" style={{ animationDelay: '0.3s' }}>
+        <div className="animate-slide-in-bottom opacity-0" style={{ animationDelay: '0.3s' }}>
           <Input
             type="text"
             placeholder="Title (optional)"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
-            className="bg-background border-input font-body text-lg placeholder:text-muted-foreground/60 focus-literary h-12 transition-all duration-300 hover:border-primary/50 focus:border-primary"
+            className="bg-background border-input font-body text-lg placeholder:text-muted-foreground/60 focus-literary h-12 transition-all duration-300 hover:border-primary/50 focus:border-primary focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/10"
             maxLength={200}
           />
         </div>
 
-        <div className="animate-fade-in-up opacity-0" style={{ animationDelay: '0.4s' }}>
+        <div className="animate-slide-in-bottom opacity-0" style={{ animationDelay: '0.4s' }}>
           <Textarea
             placeholder="Write your poem here..."
             value={content}
             onChange={(e) => setContent(e.target.value)}
-            className="bg-background border-input font-body text-lg placeholder:text-muted-foreground/60 focus-literary min-h-[200px] resize-y leading-relaxed transition-all duration-300 hover:border-primary/50 focus:border-primary"
+            className="bg-background border-input font-body text-lg placeholder:text-muted-foreground/60 focus-literary min-h-[200px] resize-y leading-relaxed transition-all duration-300 hover:border-primary/50 focus:border-primary focus:scale-[1.01] focus:shadow-lg focus:shadow-primary/10"
             maxLength={5000}
           />
         </div>
       </div>
 
-      <div className="flex justify-end animate-fade-in-up opacity-0" style={{ animationDelay: '0.5s' }}>
+      <div className="flex justify-end animate-slide-in-bottom opacity-0" style={{ animationDelay: '0.5s' }}>
         <Button
           type="submit"
           disabled={isSubmitting || !content.trim()}
-          className="group font-body text-base px-6 py-5 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100"
+          className="group font-body text-base px-6 py-5 bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 hover:scale-105 active:scale-95 disabled:opacity-50 disabled:cursor-not-allowed disabled:hover:scale-100 relative overflow-hidden"
         >
-          {isSubmitting ? (
-            <span className="animate-gentle-pulse">Sharing...</span>
-          ) : (
-            <>
-              Share Poem
-              <Send className="ml-2 w-4 h-4 transition-transform group-hover:translate-x-1 group-hover:-translate-y-0.5" />
-            </>
+          <span className="relative z-10 flex items-center">
+            {isSubmitting ? (
+              <span className="animate-gentle-pulse">Sharing...</span>
+            ) : (
+              <>
+                Share Poem
+                <Send className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-0.5" />
+              </>
+            )}
+          </span>
+          {!isSubmitting && (
+            <span className="absolute inset-0 bg-gradient-to-r from-primary/0 via-primary/20 to-primary/0 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-700" />
           )}
         </Button>
       </div>

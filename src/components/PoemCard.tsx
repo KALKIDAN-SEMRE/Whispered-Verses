@@ -23,14 +23,17 @@ const PoemCard = ({ content, title, createdAt, index }: PoemCardProps) => {
     <>
       <article 
         onClick={() => setIsOpen(true)}
-        className="poem-card group opacity-0 animate-fade-in-up bg-poem border border-poem-border rounded-lg p-8 md:p-12 shadow-poem hover:shadow-poem-hover cursor-pointer flex flex-col items-center justify-center h-full min-h-[200px] md:min-h-[250px] transition-all duration-300"
-        style={{ animationDelay: `${index * 0.1}s` }}
+        className="poem-card group opacity-0 animate-slide-in-bottom bg-poem border border-poem-border rounded-lg p-8 md:p-12 shadow-poem hover:shadow-poem-hover cursor-pointer flex flex-col items-center justify-center h-full min-h-[200px] md:min-h-[250px] transition-all duration-500 relative overflow-hidden"
+        style={{ animationDelay: `${index * 0.08}s` }}
       >
-        <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-medium text-foreground italic text-center transition-all duration-300 group-hover:text-primary/90 px-4">
+        {/* Subtle background gradient animation */}
+        <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-gradient-to-br from-primary/5 via-transparent to-primary/5 animate-gradient-shift pointer-events-none" />
+        
+        <h2 className="font-display text-xl md:text-2xl lg:text-3xl font-medium text-foreground italic text-center transition-all duration-500 group-hover:text-primary/90 px-4 relative z-10 group-hover:scale-105">
           {displayTitle}
         </h2>
         
-        <footer className="mt-8 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <footer className="mt-8 opacity-0 group-hover:opacity-100 transition-all duration-500 transform translate-y-2 group-hover:translate-y-0 relative z-10">
           <time 
             dateTime={createdAt}
             className="text-xs md:text-sm text-muted-foreground font-body italic"
@@ -41,17 +44,17 @@ const PoemCard = ({ content, title, createdAt, index }: PoemCardProps) => {
       </article>
 
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-poem border-poem-border shadow-poem-hover p-8 md:p-12 rounded-xl">
+        <DialogContent className="max-w-3xl max-h-[90vh] overflow-y-auto bg-poem border-poem-border shadow-poem-hover p-8 md:p-12 rounded-xl animate-scale-in">
           <DialogHeader className="text-center mb-8">
-            <DialogTitle className="font-display text-3xl md:text-4xl font-medium text-foreground italic mb-3">
+            <DialogTitle className="font-display text-3xl md:text-4xl font-medium text-foreground italic mb-3 animate-text-reveal opacity-0">
               {displayTitle}
             </DialogTitle>
-            <DialogDescription className="text-sm text-muted-foreground font-body italic">
+            <DialogDescription className="text-sm text-muted-foreground font-body italic animate-fade-in-up opacity-0" style={{ animationDelay: '0.2s' }}>
               {format(new Date(createdAt), "MMMM d, yyyy")}
             </DialogDescription>
           </DialogHeader>
           
-          <div className="poem-text text-foreground/90 whitespace-pre-wrap leading-relaxed text-lg md:text-xl">
+          <div className="poem-text text-foreground/90 whitespace-pre-wrap leading-relaxed text-lg md:text-xl animate-text-reveal opacity-0" style={{ animationDelay: '0.3s' }}>
             {content}
           </div>
         </DialogContent>

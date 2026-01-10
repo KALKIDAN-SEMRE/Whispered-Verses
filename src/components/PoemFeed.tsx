@@ -65,18 +65,22 @@ const PoemFeed = ({ refreshTrigger }: PoemFeedProps) => {
   if (isLoading) {
     return (
       <div className="flex flex-col items-center justify-center py-20 animate-fade-in">
-        <div className="w-12 h-12 border-2 border-primary/30 border-t-primary rounded-full animate-spin mb-4" />
-        <p className="text-muted-foreground font-body italic">Loading poems...</p>
+        <div className="w-12 h-12 border-2 border-primary/30 border-t-primary rounded-full animate-spin mb-4 relative">
+          <div className="absolute inset-0 border-2 border-primary/10 rounded-full animate-ping" />
+        </div>
+        <p className="text-muted-foreground font-body italic animate-gentle-pulse">Loading poems...</p>
       </div>
     );
   }
 
   if (poems.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center py-20 text-center animate-fade-in">
-        <BookOpen className="w-16 h-16 text-muted-foreground/40 mb-6" />
-        <h3 className="font-display text-2xl text-foreground mb-2">No poems yet</h3>
-        <p className="text-muted-foreground font-body max-w-md">
+      <div className="flex flex-col items-center justify-center py-20 text-center animate-scale-in opacity-0">
+        <BookOpen className="w-16 h-16 text-muted-foreground/40 mb-6 animate-float" />
+        <h3 className="font-display text-2xl text-foreground mb-2 animate-text-reveal opacity-0" style={{ animationDelay: '0.2s' }}>
+          No poems yet
+        </h3>
+        <p className="text-muted-foreground font-body max-w-md animate-fade-in-up opacity-0" style={{ animationDelay: '0.3s' }}>
           Be the first to share your words. This sanctuary awaits your voice.
         </p>
       </div>
